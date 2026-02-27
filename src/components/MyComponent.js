@@ -1,6 +1,7 @@
 // 1. class component
 // 2. function component
 
+import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
 class MyComponent extends React.Component {
   state = {
@@ -9,36 +10,25 @@ class MyComponent extends React.Component {
     age: 20,
   };
   //=============== this.setSTATE ==================
-  handleClick = (event) => {
-    console.log("My name is", this.state.name);
+  handleOnChange = (event) => {
     this.setState({
-      name: "BESO",
-      age: Math.floor(Math.random() * 100 + 1),
+      name: event.target.value,
     });
   };
-  handleMouseOver = (event) => {
-    return console.log(event.pageY);
+  handleOnSubmit = (event) => {
+    event.preventDefault();
+    console.log(this.state);
   };
-
+  // ========================== RENDER ============================
   // JSX: chỉ trả về 1 phần tử thôi
   render() {
     return (
       <div>
         My name is {this.state.name} and My address is {this.state.age}
-        <button
-          onClick={(event) => {
-            return this.handleClick(event);
-          }}
-        >
-          Click Me
-        </button>
-        <button
-          onMouseOver={(event) => {
-            return this.handleMouseOver(event);
-          }}
-        >
-          Hover Me
-        </button>
+        <form onSubmit={(event) => this.handleOnSubmit(event)}>
+          <input onChange={(event) => this.handleOnChange(event)} type="text" />
+          <button>Submit</button>
+        </form>
       </div>
     );
   }
