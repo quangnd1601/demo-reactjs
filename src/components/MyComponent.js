@@ -22,12 +22,15 @@ class MyComponent extends React.Component {
   render() {
     // DRY: don't repeat yourself
     return (
-      <div>
-        <AddUserInfo handleAddNew={this.handleAddNew}></AddUserInfo>
-        <br />
-        <DisplayInfo listUsers={this.state.listUsers}></DisplayInfo>
-        <hr />
-      </div>
+      <React.Fragment>
+        <div className="a">
+          <AddUserInfo handleAddNew={this.handleAddNew}></AddUserInfo>
+          <br />
+          <DisplayInfo listUsers={this.state.listUsers}></DisplayInfo>
+          <hr />
+        </div>
+        <div className="b"></div>
+      </React.Fragment>
     );
   }
 }

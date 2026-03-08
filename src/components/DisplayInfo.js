@@ -22,9 +22,8 @@ class DisplayInfo extends React.Component {
             ? "Hide List Users"
             : "Show List Users"}
         </button>
-
         {this.state.isShowListUser && (
-          <div>
+          <>
             {listUsers.map((user) => {
               return (
                 <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
@@ -34,7 +33,7 @@ class DisplayInfo extends React.Component {
                 </div>
               );
             })}
-          </div>
+          </>
         )}
       </div>
     );
