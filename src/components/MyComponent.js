@@ -3,7 +3,7 @@
 
 import { type } from "@testing-library/user-event/dist/type";
 import React from "react";
-import UserInfo from "./UserInfo";
+import AddUserInfo from "./AddUserInfo";
 import DisplayInfo from "./DisplayInfo";
 class MyComponent extends React.Component {
   state = {
@@ -13,14 +13,20 @@ class MyComponent extends React.Component {
       { id: 3, name: "Quang Beso", age: "21" },
     ],
   };
+  handleAddNew = (userObj) => {
+    this.setState({ listUsers: [userObj, ...this.state.listUsers] });
+    console.log(userObj);
+  };
+
   // JSX: chỉ trả về 1 phần tử thôi
   render() {
     // DRY: don't repeat yourself
     return (
       <div>
-        <UserInfo></UserInfo>
+        <AddUserInfo handleAddNew={this.handleAddNew}></AddUserInfo>
         <br />
         <DisplayInfo listUsers={this.state.listUsers}></DisplayInfo>
+        <hr />
       </div>
     );
   }

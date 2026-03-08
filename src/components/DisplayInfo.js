@@ -1,5 +1,5 @@
 import React from "react";
-
+import "./DisplayInfo.scss";
 class DisplayInfo extends React.Component {
   state = {
     isShowListUser: true,
@@ -12,7 +12,7 @@ class DisplayInfo extends React.Component {
   render() {
     const { listUsers } = this.props;
     return (
-      <div>
+      <div className="display-info-container">
         <button onClick={() => this.handleShowHide()}>
           {this.state.isShowListUser === true
             ? "Hide List Users"
@@ -23,7 +23,9 @@ class DisplayInfo extends React.Component {
             {listUsers.map((user) => {
               return (
                 <div key={user.id} className={+user.age > 18 ? "green" : "red"}>
-                  <div>My name's {user.name}</div>
+                  <div style={{ color: "blue", paddingTop: "20px" }}>
+                    My name's {user.name}
+                  </div>
                   <div>My age's {user.age}</div>
                   <hr />
                 </div>
@@ -34,24 +36,5 @@ class DisplayInfo extends React.Component {
       </div>
     );
   }
-
-  // render() {
-  //   console.log(this.props);
-  //   const { listUsers } = this.props; // Object
-  //   // props => viết tắt properties (tài sản)
-  //   return (
-  //     <div>
-  //       {listUsers.map((user) => {
-  //         return (
-  //           <div key={user.id}>
-  //             <div>My name's {user.name}</div>
-  //             <div>My age's {user.age}</div>
-  //             <hr />
-  //           </div>
-  //         );
-  //       })}
-  //     </div>
-  //   );
-  // }
 }
 export default DisplayInfo;
