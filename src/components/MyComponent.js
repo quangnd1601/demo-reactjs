@@ -17,6 +17,15 @@ class MyComponent extends React.Component {
     this.setState({ listUsers: [userObj, ...this.state.listUsers] });
     console.log(userObj);
   };
+  handleDelete = (userId) => {
+    let listUsersClone = [...this.state.listUsers];
+    listUsersClone = listUsersClone.filter((value, index) => {
+      return value.id != userId;
+    });
+    this.setState({
+      listUsers: listUsersClone,
+    });
+  };
 
   // JSX: chỉ trả về 1 phần tử thôi
   render() {
@@ -26,8 +35,10 @@ class MyComponent extends React.Component {
         <div className="a">
           <AddUserInfo handleAddNew={this.handleAddNew}></AddUserInfo>
           <br />
-          <DisplayInfo listUsers={this.state.listUsers}></DisplayInfo>
-          <hr />
+          <DisplayInfo
+            listUsers={this.state.listUsers}
+            handleDelete={this.handleDelete}
+          ></DisplayInfo>
         </div>
         <div className="b"></div>
       </React.Fragment>
